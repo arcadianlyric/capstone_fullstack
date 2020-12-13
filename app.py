@@ -15,7 +15,7 @@ def create_app(test_cfg=None, test_url=False):
     elif test_url:
         setup_db(app, os.environ['DATABASE_URL_TEST'])
     else:
-    # setup_db(app, os.environ['DATABASE_URL'])
+        setup_db(app, os.environ['DATABASE_URL'])
 
     CORS(app)
     '''
