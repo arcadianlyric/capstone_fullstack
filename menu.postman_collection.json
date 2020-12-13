@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "0da9c38f-f423-44c7-9135-9435cfc034ec",
+		"name": "menu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "chef",
+			"item": [
+				{
+					"name": "post/dish",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\" : \"sushi\", \"price\" : 15,\n        \"ingredient\" : [{\"name\" : \"salmon\", \"allergen\" : \"seafood\"},\n                        {\"name\" : \"rice\", \"allergen\" : \"\"}]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch/dish/1",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ingredient\": [{\"name\" : \"tomato\", \"allergen\" : \"\"},\n                            {\"name\" : \"cheese\", \"allergen\" : \"milk\"},\n                            {\"name\" : \"flour\", \"allergen\" : \"wheat\"},\n                            {\"name\" : \"basil\", \"allergen\" : \"\"}\n                            ]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish/1",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get/dish",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get/dish/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish/1",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delet/dish/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish/1",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjNqaXNUQl8xVkxXMng3LVR2RVA0NyJ9.eyJpc3MiOiJodHRwczovL2Rldi00dm5zOWkycC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkNTQxMTQzODUxOGYwMDZmMmJjNzkyIiwiYXVkIjoidWRhY2l0eS1tZW51LWNjIiwiaWF0IjoxNjA3ODkwNzc2LCJleHAiOjE2MDc5NzcxNzYsImF6cCI6IlhqMDJ1dDFVOW84VXNRNEFSREIyZk1WYVdpTWZsbGZiIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6bWVudSIsInBhdGNoOm1lbnUiLCJwb3N0Om1lbnUiXX0.KTn6XvioVDLUHCyhDuWvVYctQ0wOlNPWP9wsZJInrc6kreZG8ED71TN89drjhGWn78Rr6-zAZEK9QzV-S7yfGR-wtg6tmui35CdKQRW-wvayf8xS20y8IQMXHmLkR5cklH__U0K7wZRJjhkVK0xZiPv8O1Tc4h3XnMepDtHQygAW_X9J7uN_qa5eyW0JB33vz25TkA4AN8NBn4Ltj7AxvXzSuhV7tHmMGfBI61aAqABit_YLeOFRhUBHwHbe4jeOXYr47NpZHtDvS0JAUMAqXp1HiXwviWa3VM_gta0HJ2_0ZrCge87b93NGz6S1zUhu3Zq-doCgpZ60YuhV9gQXEw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a2eaec86-228a-46c9-8500-9e5ccbbea38d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e105a103-e1b1-4438-a158-53a32da21dab",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "manager",
+			"item": [
+				{
+					"name": "post/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2cd1f900-f45a-46f7-bb90-a6dafc1b9e28",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\" : \"sushi\", \"price\" : 15,\n        \"ingredient\" : [{\"name\" : \"salmon\", \"allergen\" : \"seafood\"},\n                        {\"name\" : \"rice\", \"allergen\" : \"\"}]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch/dish/1",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ingredient\": [{\"name\" : \"tomato\", \"allergen\" : \"\"},\n                            {\"name\" : \"cheese\", \"allergen\" : \"milk\"},\n                            {\"name\" : \"flour\", \"allergen\" : \"wheat\"},\n                            {\"name\" : \"basil\", \"allergen\" : \"\"}\n                            ]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish/1",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get/dish",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get/dish/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish/1",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delet/dish/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://menu-api101.herokuapp.com/dish/1",
+							"protocol": "https",
+							"host": [
+								"menu-api101",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjNqaXNUQl8xVkxXMng3LVR2RVA0NyJ9.eyJpc3MiOiJodHRwczovL2Rldi00dm5zOWkycC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkNTQxYzgwMjU3MGMwMDZlOWM0ZTA0IiwiYXVkIjoidWRhY2l0eS1tZW51LWNjIiwiaWF0IjoxNjA3ODkzOTEwLCJleHAiOjE2MDc5ODAzMTAsImF6cCI6IlhqMDJ1dDFVOW84VXNRNEFSREIyZk1WYVdpTWZsbGZiIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6bWVudSJdfQ.HuHdcHZ6-1WUVnKVnjSLRUbOdKQ3R0aWmKtZ-C-OiFUUyaA5kfJrIqQcW2jkn-yY4BTxxfpH6k0YvynXxBAZ3rcL9GlxWxcqgyHgLI3WFR6581gIG4y4uoAKc5IVY5k4L50SafdRJgkFz7IC51VffEZRYUbRXi-pMYe5pKUqhHHkLVdNE5GF5BZU5Yp_4AtSvfo7zEXlRitL52R5uspsPM9i4fA3c_efg4g9QKI4sjH8A-uCJ05YDQqJg7OGfFTmKrLRIlOYcT_aco6Ydwps9C6RmDhpns13ES7zjEwklgXd2Sl7GJ-n5xCagPo7P0YfE998a-cTTKPJygGm-3ePZg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "92b0f655-89b0-4f3d-acd5-e70afe8a1861",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae97c85b-ef35-4e4d-9f69-33f53a1a318d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjNqaXNUQl8xVkxXMng3LVR2RVA0NyJ9.eyJpc3MiOiJodHRwczovL2Rldi00dm5zOWkycC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZkNTQxMTQzODUxOGYwMDZmMmJjNzkyIiwiYXVkIjoidWRhY2l0eS1tZW51LWNjIiwiaWF0IjoxNjA3ODE0NTQ4LCJleHAiOjE2MDc5MDA5NDgsImF6cCI6IlhqMDJ1dDFVOW84VXNRNEFSREIyZk1WYVdpTWZsbGZiIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6bWVudSIsInBhdGNoOm1lbnUiLCJwb3N0Om1lbnUiXX0.TP_QhLuhxVFQSTRWNjlR_s64lG96YswMcDYVT50sxOXaTz6QUVOgddPzfAjy_vs__uvoiatoxraJcOVEDTvsYBx4Dg1BNjVPk6hKyLZRxGKdBmkt28QiY2u2F7JWadt_3Xe5xvuNPgWXSrYAZ8RI6U3w-RgdvtRMFI2sdrHMe4qBQ88q1jBIzzOCXWl67FflVVvBZ0ATauUnw2tgQ8yTT8tgBazwBqKfrVDi-mHe1MQDdHG5m7-xbizsCqXehh6ZGFRb7DBz_yVlZ36YGugPY0Xv77Licylrn0JV07n1Shs6xpLc5aX42IVYJqPXOdZNr2Se4K8VmXRtBaFIrR1SXg",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}
