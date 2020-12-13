@@ -18,7 +18,8 @@ def create_app(test_cfg=None, test_url=False):
     # setup_db(app, os.environ['DATABASE_URL'])
 
     CORS(app)
-    dient by dish
+    '''
+    Get ingredient by dish
     Get dish by ingredient
     '''
 
@@ -219,9 +220,11 @@ def create_app(test_cfg=None, test_url=False):
                         "error": 500,
                         "message": "Internal Server Error"
                         }), 500,
-                )'''
-    Get ingre
+                )
 
     return app
 
 app = create_app()
+
+if __name__ == '__main__':
+    app.run()
