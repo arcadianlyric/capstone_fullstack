@@ -1,7 +1,7 @@
 ## Full Stack Capstone project
 
 ### Goals
-The api is a restuarant menu with hosted on Heroku https://menu-api101.herokuapp.com:  
+The api is a restuarant menu hosted on Heroku https://menu-api101.herokuapp.com with:  
 
 2 tables: dish and ingredient    
 dish with id, name, price, indredients;  
