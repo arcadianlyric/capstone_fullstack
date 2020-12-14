@@ -1,54 +1,58 @@
 ## Full Stack Capstone project
 
-#### Goals
+### Goals
 The api is a restuarant menu with:  
-2 tables: dish and ingredient  
+
+2 tables: dish and ingredient    
+dish with id, name, price, indredients;  
+indredient with id, name, allergen, associated dish id.  
+
 3 roles: public, manager and chef  
 public can only view menu dish to leanr price, ingradients and possible allergens;  
 manager can view and delete menu dish;  
 chef can view and delete as well as create new dishes and update them.  
 
 
-#### Setup
+### Setup
 Create a virtual env for the project  
-```bash
+```
 conda create -n your_env 
 ```
 
 Install dependencies  
-```bash
+```
 pip install -r requirements.txt
 ```
 
-Setup env variables  
-```bash
+Setup env variables, env variables in setup.sh    
+```
 source setup.sh
 ```
 
-#### Test on local
+### Test on local
 Start the app
-```bash
-bash run.sh
 ```
-then go to  http://127.0.0.1:5000/  
-will show 'healty' 
+ run.sh
+```
+go to  http://127.0.0.1:5000/  
+'healty' indicates the app is up and running.  
 
 Test app and RBCA
-```bash
+```
 pytest test_app.py
 
 pytest test_rbca.py
 ```
 
-#### Deploy on Heroku
+### Deploy on Heroku
 Create app on Heroku
-```bash
+```
 heroku create menu-api101
 git push heroku master
 ```
 
 Setup config
-```bash
+```
 heroku config:set AUTH0_DOMAIN="dev-4vns9i2p.us.auth0.com"
 heroku config:set ALGORITHMS="RS256"
 heroku config:set API_AUDIENCE="udacity-menu-cc"
@@ -56,19 +60,19 @@ heroku config:set API_AUDIENCE="udacity-menu-cc"
 ```
 
 Initiate database
-```bash
+```
 heroku run python3 ./manage.py db init --app menu-api101
 ```
 
 Test
-```bash
+```
 heroku open
 ```
 will also show 'healty'
 
 A menu.postman_collection.json file is available for Postman tests. 
 
-#### Endpoints
+### Endpoints
 ```
 GET '/dish'
 - Fetches a dictionary of dish in which the keys are the ids and the value is the corresponding string of the dish
@@ -84,10 +88,28 @@ GET '/dish'
 ```
 
 ```
-GET '/questions'
-- Fetch all questions
+POST '/dish'
+- Randomly select a question in a category that is not included in previous ingredient as a quizz
+- Request category_id 
+- Return selected question, status
+{
+    "ingredient": 
+        {
+            "answer": "The Liver",
+            "category": 1,
+            "difficulty": 4,
+            "id": 20,
+            "question": "What is the heaviest organ in the human body?"
+        },
+    "success": True
+}
+```
+
+```
+GET '/ingredient'
+- Fetch all ingredient
 - Request Arguments: None
-- Return An object with questions, total questions, dish. 
+- Return An object with ingredient, total ingredient, dish. 
 {
     "dish": {
         "1": "science",
@@ -97,7 +119,7 @@ GET '/questions'
         "5": "entertainment",
         "6": "sports"
     },
-    "questions": [
+    "ingredient": [
         {
             "answer": "Maya Angelou",
             "category": 4,
@@ -107,13 +129,13 @@ GET '/questions'
         },
         ...
     ],
-    "total_questions": 43
+    "total_ingredient": 43
 }
 ```
 
 ```
-DELET '/questions/<int:question_id>'
-- Delect questions by id
+DELET '/ingredient/<int:question_id>'
+- Delect ingredient by id
 - Request question_id
 - Return an object with deleted question_id and status if successful 
 {
@@ -123,7 +145,7 @@ DELET '/questions/<int:question_id>'
 ```
 
 ```
-POST '/questions'
+POST '/ingredient'
 - Add a new question
 - Request
 new_question = {
@@ -132,10 +154,10 @@ new_question = {
             "difficulty": 1,
             "category": 1
         }
-- Return created new question id, total_questions, paginated questions, status
+- Return created new question id, total_ingredient, paginated ingredient, status
 {
     "created": 48,
-    "questions": [
+    "ingredient": [
         42,
         [
             {
@@ -149,17 +171,17 @@ new_question = {
         ]
     ],
     "success": true,
-    "total_questions": 42
+    "total_ingredient": 42
 }
 ```
 
 ```
-POST '/questions/search'
-- Fetches questions that match search term
+POST '/ingredient/search'
+- Fetches ingredient that match search term
 - Request search term
-- Return an object of questions match the search term, total_questions, status
+- Return an object of ingredient match the search term, total_ingredient, status
 {
-    'questions': [{
+    'ingredient': [{
     'answer': 'Edward Scissorhands', 
     'category': 5, 
     'difficulty': 3, 
@@ -167,17 +189,17 @@ POST '/questions/search'
     'question': 'What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?'
     }], 
     'success': True, 
-    'total_questions': 1
+    'total_ingredient': 1
     }
 ```
 
 ```
-GET '/dish/<int:category_id>/questions'
-- Fetch questions by category_id
+GET '/dish/<int:category_id>/ingredient'
+- Fetch ingredient by category_id
 - Request category_id
-- Return all questions in the category
+- Return all ingredient in the category
 {
-    "questions": [
+    "ingredient": [
         {
             "answer": "The Liver",
             "category": 1,
@@ -189,31 +211,7 @@ GET '/dish/<int:category_id>/questions'
 }
 ```
 
-```
-POST '/quizzes'
-- Randomly select a question in a category that is not included in previous questions as a quizz
-- Request category_id 
-- Return selected question, status
-{
-    "questions": 
-        {
-            "answer": "The Liver",
-            "category": 1,
-            "difficulty": 4,
-            "id": 20,
-            "question": "What is the heaviest organ in the human body?"
-        },
-    "success": True
-}
-```
 
-
-
-## Testing
-To run the tests, run
-```
-dropdb trivia_test
-createdb trivia_test
-psql trivia_test < trivia.psql
-python test_flaskr.py
-```
+### TODO
+Get dish by searching allergen  
+frontend  
