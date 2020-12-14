@@ -8,7 +8,7 @@ dish with id, name, price, indredients;
 indredient with id, name, allergen, associated dish id.  
 
 3 roles: public, manager and chef  
-public permission= view menu dish to leanr price, ingradients and allergens; get dish by searching allergen;  
+public permission= view menu dish to leanr price, ingradients and allergens; search allergen to avoid some dishes;  
   
 manager permission= public permission + delete menu dish;  
 chef permission= manager permission + create new dishes and update them.  
@@ -75,143 +75,147 @@ A menu.postman_collection.json file is available for Postman tests.
 
 ### Endpoints
 ```
-GET '/dish'
+GET '/dish/<dish_id>'
 - Fetches a dictionary of dish in which the keys are the ids and the value is the corresponding string of the dish
-- Request Arguments: None
-- Returns: An object with a single key, dish, that contains a object of id: category_string key:value pairs. 
-{'1' : "Science",
-'2' : "Art",
-'3' : "Geography",
-'4' : "History",
-'5' : "Entertainment",
-'6' : "Sports"}
-
-```
-
-```
-POST '/dish'
-- Randomly select a question in a category that is not included in previous ingredient as a quizz
-- Request category_id 
-- Return selected question, status
+- Request: Arguments dish ID
+- Return: 
+An object with a single key, dish id, name, price,  ingrediets. 
+Status
+- Example: 
 {
-    "ingredient": 
-        {
-            "answer": "The Liver",
-            "category": 1,
-            "difficulty": 4,
-            "id": 20,
-            "question": "What is the heaviest organ in the human body?"
-        },
-    "success": True
-}
-```
-
-```
-GET '/ingredient'
-- Fetch all ingredient
-- Request Arguments: None
-- Return An object with ingredient, total ingredient, dish. 
-{
-    "dish": {
-        "1": "science",
-        "2": "art",
-        "3": "geography",
-        "4": "history",
-        "5": "entertainment",
-        "6": "sports"
+    "result": {
+        "id": 1,
+        "ingredient": [
+            {
+                "allergen": "seafood",
+                "dish_id": 1,
+                "id": 42,
+                "name": "tuna"
+            },
+            {
+                "allergen": "",
+                "dish_id": 1,
+                "id": 43,
+                "name": "rice"
+            }
+        ],
+        "name": "sushi",
+        "price": 10
     },
-    "ingredient": [
-        {
-            "answer": "Maya Angelou",
-            "category": 4,
-            "difficulty": 2,
-            "id": 5,
-            "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
-        },
-        ...
-    ],
-    "total_ingredient": 43
-}
-```
-
-```
-DELET '/ingredient/<int:question_id>'
-- Delect ingredient by id
-- Request question_id
-- Return an object with deleted question_id and status if successful 
-{
-    "deleted_question": 6,
     "success": true
 }
 ```
 
 ```
-POST '/ingredient'
-- Add a new question
-- Request
-new_question = {
-            "question": "What is the 5th element ?",
-            "answer": "B",
-            "difficulty": 1,
-            "category": 1
-        }
-- Return created new question id, total_ingredient, paginated ingredient, status
+GET '/dish'
+Similar to GET '/dish/<dish_id>'; returns all dishes in the database.   
+```
+
+```
+POST '/dish'
+- Add new dish to the database  
+- Request: Body of dish name, price, ingredients  
+- Return: 
+Body of dish plus id assigned to dish and ingredients  
+Status
+- Example:
 {
-    "created": 48,
-    "ingredient": [
-        42,
-        [
+    "result": {
+        "id": 17,
+        "ingredient": [
             {
-                "answer": "Apollo 13",
-                "category": 5,
-                "difficulty": 4,
-                "id": 2,
-                "question": "What movie earned Tom Hanks his third straight Oscar nomination, in 1996?"
+                "allergen": "seafood",
+                "dish_id": 17,
+                "id": 44,
+                "name": "salmon"
             },
-            ...
-        ]
-    ],
-    "success": true,
-    "total_ingredient": 42
+            {
+                "allergen": "",
+                "dish_id": 17,
+                "id": 45,
+                "name": "rice"
+            }
+        ],
+        "name": "sushi",
+        "price": 15
+    },
+    "success": true
+}
+```
+
+```
+PATCH '/dish/<dish_id>'
+- Update exsisting dish in the database  
+- Request: Dish ID, body of new dish name, price, ingredients  
+- Return: 
+Body of updated dish    
+Status
+```
+
+```
+DELET '/dish/<int:dish_id>'
+- Delect dish by id
+- Request: dish_id
+- Return: 
+An object with deleted dish_id  
+Status  
+{
+    "result": 6,
+    "success": true
 }
 ```
 
 ```
 POST '/ingredient/search'
-- Fetches ingredient that match search term
-- Request search term
-- Return an object of ingredient match the search term, total_ingredient, status
+- Fetches dishes whose ingredients contain search term of allergen  
+- Request: search term
+- Return: 
+An list of dishes match the search term  
+Status  
+- Example: search term = 'seafood'  
 {
-    'ingredient': [{
-    'answer': 'Edward Scissorhands', 
-    'category': 5, 
-    'difficulty': 3, 
-    'id': 6, 
-    'question': 'What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?'
-    }], 
-    'success': True, 
-    'total_ingredient': 1
-    }
-```
-
-```
-GET '/dish/<int:category_id>/ingredient'
-- Fetch ingredient by category_id
-- Request category_id
-- Return all ingredient in the category
-{
-    "ingredient": [
         {
-            "answer": "The Liver",
-            "category": 1,
-            "difficulty": 4,
-            "id": 20,
-            "question": "What is the heaviest organ in the human body?"
+            "id": 18,
+            "ingredient": [
+                {
+                    "allergen": "seafood",
+                    "dish_id": 18,
+                    "id": 48,
+                    "name": "eel"
+                },
+                {
+                    "allergen": "",
+                    "dish_id": 18,
+                    "id": 49,
+                    "name": "rice"
+                }
+            ],
+            "name": "eel sushi",
+            "price": 25
         },
-        ...
+        {
+            "id": 19,
+            "ingredient": [
+                {
+                    "allergen": "seafood",
+                    "dish_id": 19,
+                    "id": 50,
+                    "name": "tuna"
+                },
+                {
+                    "allergen": "",
+                    "dish_id": 19,
+                    "id": 51,
+                    "name": "rice"
+                }
+            ],
+            "name": "tuna sushi",
+            "price": 15
+        }
+    ],
+    "success": true
 }
 ```
-
 
 ### TODO
 frontend  
