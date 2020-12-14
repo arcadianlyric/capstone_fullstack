@@ -89,6 +89,13 @@ def test_post_dish(client):
     res = client.post('/dish', json=dish)
     assert res.status_code == 200
 
+def test_search_allergen(client):
+        res = client.post('/dish/search', json={'searchTerm':'milk'})
+        assert res.status_code == 200
+        dishes = res.json['result']
+        assert dishes[0]['name'] == 'pizza'
+        assert dishes[1]['name'] == 'icecream'
+        
     dish_id = res.json['result']['id']
     assert dish_id == 4
     res = client.get('/dish/{}'.format(dish_id))

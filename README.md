@@ -8,9 +8,10 @@ dish with id, name, price, indredients;
 indredient with id, name, allergen, associated dish id.  
 
 3 roles: public, manager and chef  
-public can only view menu dish to leanr price, ingradients and possible allergens;  
-manager can view and delete menu dish;  
-chef can view and delete as well as create new dishes and update them.  
+public permission= view menu dish to leanr price, ingradients and allergens; get dish by searching allergen;  
+  
+manager permission= public permission + delete menu dish;  
+chef permission= manager permission + create new dishes and update them.  
 
 
 ### Setup
@@ -213,5 +214,4 @@ GET '/dish/<int:category_id>/ingredient'
 
 
 ### TODO
-Get dish by searching allergen  
 frontend  

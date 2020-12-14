@@ -169,6 +169,39 @@ def create_app(test_cfg=None, test_url=False):
             "result": ingredient.format()
         })
 
+    # def paginate(request, selections):
+    #     page = request.args.get('page', 1, type=int)
+    #     page_size = 10
+    #     start = (page - 1) * page_size
+    #     end = start + page_size
+    #     items = [s.format() for s in selections]
+    #     return len(items), items[start:end]
+
+    @app.route('/dish/search', methods=['POST'])
+    def search_dish():
+        res = request.get_json()
+        search_term = res.get('searchTerm')
+
+        if search_term:
+            selection = Ingredient.query.filter(Ingredient.allergen.ilike('%{}%'.format(search_term)))
+            # total_ing, ing = paginate(request, selection.all())
+            items = [s.format() for s in selection.all()]
+            if len(items) == 0:
+                return jsonify({
+                'success': True,
+                'result': 'none',
+            })
+
+            dish_info = []
+            for i in items:
+                dish_id = i["dish_id"]
+                dish_info.append(Dish.query.get(dish_id).format())
+
+            return jsonify({
+                'success': True,
+                'result': dish_info,
+            })
+
     # Error Handling
     @app.errorhandler(400)
     def bad_request(error):
