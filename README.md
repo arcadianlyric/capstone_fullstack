@@ -1,51 +1,65 @@
-## Full Stack Capstone project
+## Full Stack Capstone project: menu API backend
 
-### Goals
-The api is a restuarant menu hosted on Heroku https://menu-api101.herokuapp.com with:  
+### Motivation
+The menu app is used for resturants to post menu (price, food ingredients etc.) allowing public customers to check dish price and allergen in them.
+A public user can send a get request to check all dish info, or a get request with the dish id, to get dish price, ingredients and allergens. 
+A menager can do the same as public user and also send a delete request to remove some items from menu if the resturant decide to discontinue that product. 
+A checf can do the same as manager and also post new dish on menu as well as update existing dishes. 
 
-2 tables: dish and ingredient    
-dish with id, name, price, indredients;  
-indredient with id, name, allergen, associated dish id.  
+The endpoints and how to send requests to these endpoints are described in the 'Endpoints' session.
 
-3 roles: public, manager and chef  
-public permission= view menu dish to leanr price, ingradients and allergens; search allergen to avoid some dishes;  
-  
-manager permission= public permission + delete menu dish;  
-chef permission= manager permission + create new dishes and update them.  
+All endpoints need to be tested using postman as there is no frontend yet.
 
+## Getting Started
 
-### Setup
-Create a virtual env for the project  
-```
-conda create -n your_env 
-```
+### Installing Dependencies
 
-Install dependencies  
-```
+#### Python 3.7
+
+Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
+
+#### Virtual Enviornment
+
+We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+#### PIP Dependencies
+
+Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
+
+```bash
 pip install -r requirements.txt
 ```
 
-Setup env variables, env variables in setup.sh    
-```
-source setup.sh
-```
+This will install all of the required packages we selected within the `requirements.txt` file.
 
-### Test on local
-Start the app
+##### Key Dependencies
+
+- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
+
+- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./src/database/models.py`. We recommend skimming this code first so you know how to interface with the Drink model.
+
+- [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
+
+### Running the server locally
+To run the server
 ```
- run.sh
+run.sh
 ```
 go to  http://127.0.0.1:5000/  
 'healty' indicates the app is up and running.  
 
-Test app and RBCA
+
+### Test locally
+Setup env variables, env variables in setup.sh. Test app and RBCA
 ```
+source setup.sh
+
 pytest test_app.py
 
 pytest test_rbca.py
 ```
 
-### Deploy on Heroku
+### Deploy on Heroku and tests
 Create app on Heroku
 ```
 heroku create menu-api101
@@ -69,9 +83,32 @@ Test
 ```
 heroku open
 ```
-will also show 'healty'
+at https://menu-api101.herokuapp.com will also show 'healty'
 
 A menu.postman_collection.json file is available for Postman tests. 
+
+### API behavior and RBAC controls with Auth0
+The menu app is a restuarant menu hosted on Heroku https://menu-api101.herokuapp.com with:  
+
+3 roles: public, manager and chef  
+public permission= read dish info
+get /dish  
+get /dish/dish_id
+manager permission= public permission + delete dish
+delete /dish/dish_id  
+chef permission= manager permission + create new dishes and update them
+post /dish
+patch /dish/dish_id
+
+Auth0 is used for authentication. The following configurations are in a setup.sh file to be used in auth.py:
+- AUTH0_DOMAIN
+- API_AUDIENCE
+- ALGORITHMS
+- TOKEN for public, manger and chef roles
+
+2 tables as defined in models.py: dish and ingredient    
+dish with id, name, price, indredients;  
+indredient with id, name, allergen, associated dish id.  
 
 ### Endpoints
 ```
@@ -218,4 +255,4 @@ Status
 ```
 
 ### TODO
-frontend  
+frontend
