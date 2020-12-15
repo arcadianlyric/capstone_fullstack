@@ -1,6 +1,8 @@
 ## Full Stack Capstone project: menu API backend
 
 ### Motivation
+This menu app is developed to demonstrate the knowledge acquired in a fullstack web developer nanodegree and show the confidence of skills needed for such roles in a real world scenario. 
+
 The menu app is used for resturants to post menu (price, food ingredients etc.) allowing public customers to check dish price and allergen in them.
 A public user can send a get request to check all dish info, or a get request with the dish id, to get dish price, ingredients and allergens. 
 A menager can do the same as public user and also send a delete request to remove some items from menu if the resturant decide to discontinue that product. 
@@ -20,14 +22,17 @@ Follow instructions to install the latest version of python for your platform in
 
 #### Virtual Enviornment
 
-We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)  
+```
+conda create -n your_env python=3.7.4
+```
 
 #### PIP Dependencies
 
 Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 This will install all of the required packages we selected within the `requirements.txt` file.
@@ -107,10 +112,10 @@ Auth0 is used for authentication. The following configurations are in a setup.sh
 - ALGORITHMS
 - TOKEN for public, manger and chef roles
 
-#### tables
+#### data modeling 
 2 tables as defined in models.py: dish and ingredient    
-dish table has info on dish id, dish name, price, indredients; the table keeps track all dishes a resturant can offer by adding, deleting and updating items       
-indredient table has ingredient id, name, allergen in the ingredients, associated dish id(foreign key); the table keeps track all ingredients used in dishes logging what ingredients are used in what dish   
+The dish table has info on dish id, dish name, price, indredients; the table keeps track all dishes a resturant can offer by adding, deleting and updating items       
+The indredient table has ingredient id, name, allergen in the ingredients, associated dish id(foreign key); the table keeps track all ingredients used in dishes logging what ingredients are used in what dish   
 Each table has an insert, update, delete, and format helper functions.  
 
 ### Endpoints
