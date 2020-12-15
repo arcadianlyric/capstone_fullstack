@@ -10,6 +10,30 @@
 			"item": [
 				{
 					"name": "post/dish",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b6cffb85-f55a-44dc-92fc-589e146167dc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "81ffb99f-8b4e-417a-91c8-e3aea31fdcd9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -23,12 +47,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish",
-							"protocol": "https",
+							"raw": "{{host}}/dish",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish"
@@ -38,13 +59,27 @@
 					"response": []
 				},
 				{
-					"name": "patch/dish/1",
+					"name": "patch/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25383f24-b59b-491d-bc16-6fe39e2f537e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"ingredient\": [{\"name\" : \"tomato\", \"allergen\" : \"\"},\n                            {\"name\" : \"cheese\", \"allergen\" : \"milk\"},\n                            {\"name\" : \"flour\", \"allergen\" : \"wheat\"},\n                            {\"name\" : \"basil\", \"allergen\" : \"\"}\n                            ]}",
+							"raw": "{\n        \"ingredient\" : [{\"name\" : \"tuna\", \"allergen\" : \"seafood\"},\n                        {\"name\" : \"rice\", \"allergen\" : \"\"}]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,12 +87,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish/1",
-							"protocol": "https",
+							"raw": "{{host}}/dish/1",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish",
@@ -69,16 +101,27 @@
 				},
 				{
 					"name": "get/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8471d6c-85d6-4bdd-953a-7e0904284065",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish",
-							"protocol": "https",
+							"raw": "{{host}}/dish",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish"
@@ -89,16 +132,27 @@
 				},
 				{
 					"name": "get/dish/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02a2d264-b61f-4174-ac7c-63a092b5d3e9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish/1",
-							"protocol": "https",
+							"raw": "{{host}}/dish/1",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish",
@@ -109,21 +163,32 @@
 					"response": []
 				},
 				{
-					"name": "delet/dish/1",
+					"name": "delet/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0a102071-2fc9-44b0-9ef6-eefead4b7317",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish/1",
-							"protocol": "https",
+							"raw": "{{host}}/dish/12",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish",
-								"1"
+								"12"
 							]
 						}
 					},
@@ -173,7 +238,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2cd1f900-f45a-46f7-bb90-a6dafc1b9e28",
+								"id": "7ef55b1f-c761-401c-8807-932d750abb78",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -196,12 +261,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish",
-							"protocol": "https",
+							"raw": "{{host}}/dish",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish"
@@ -211,13 +273,27 @@
 					"response": []
 				},
 				{
-					"name": "patch/dish/1",
+					"name": "patch/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1ba7b0c4-8a9b-4572-af1c-4202ff728202",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"ingredient\": [{\"name\" : \"tomato\", \"allergen\" : \"\"},\n                            {\"name\" : \"cheese\", \"allergen\" : \"milk\"},\n                            {\"name\" : \"flour\", \"allergen\" : \"wheat\"},\n                            {\"name\" : \"basil\", \"allergen\" : \"\"}\n                            ]}",
+							"raw": "{\n        \"name\" : \"sushi\", \"price\" : 20,\n        \"ingredient\" : [{\"name\" : \"tuna\", \"allergen\" : \"seafood\"},\n                        {\"name\" : \"rice\", \"allergen\" : \"\"}]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -225,12 +301,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish/1",
-							"protocol": "https",
+							"raw": "{{host}}/dish/1",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish",
@@ -242,16 +315,27 @@
 				},
 				{
 					"name": "get/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa4d303b-ff59-482b-a85a-8158297a3c7e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish",
-							"protocol": "https",
+							"raw": "{{host}}/dish",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish"
@@ -262,16 +346,37 @@
 				},
 				{
 					"name": "get/dish/1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "89468cab-0f45-4b9c-916b-1f7c8afc24a8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c19cc4d-139a-49e1-885b-8e85c14d08d7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish/1",
-							"protocol": "https",
+							"raw": "{{host}}/dish/1",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish",
@@ -282,21 +387,32 @@
 					"response": []
 				},
 				{
-					"name": "delet/dish/1",
+					"name": "delet/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8cfbcbd-d5ae-4913-b6f1-e02c75f247ef",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://menu-api101.herokuapp.com/dish/1",
-							"protocol": "https",
+							"raw": "{{host}}/dish/13",
 							"host": [
-								"menu-api101",
-								"herokuapp",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"dish",
-								"1"
+								"13"
 							]
 						}
 					},
@@ -317,7 +433,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "92b0f655-89b0-4f3d-acd5-e70afe8a1861",
+						"id": "aef8b8fe-294a-45ec-91da-785461d7d4a6",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -327,7 +443,214 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ae97c85b-ef35-4e4d-9f69-33f53a1a318d",
+						"id": "1cf1f549-d4da-452a-9295-85ab654f896f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "post/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3cd9f0a4-1c8b-4134-960a-d4d28e2d0d08",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\" : \"sushi\", \"price\" : 15,\n        \"ingredient\" : [{\"name\" : \"salmon\", \"allergen\" : \"seafood\"},\n                        {\"name\" : \"rice\", \"allergen\" : \"\"}]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/dish",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8502c758-e5a5-44a9-b2b1-072866a8eb65",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\" : \"sushi\", \"price\" : 20,\n        \"ingredient\" : [{\"name\" : \"tuna\", \"allergen\" : \"seafood\"},\n                        {\"name\" : \"rice\", \"allergen\" : \"\"}]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/dish/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e20d0aa-ddee-40b4-a197-a963d758ed64",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/dish",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get/dish/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9dd7e83c-d36e-41da-9a82-10ac992b6491",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/dish/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dish",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delet/dish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f9ade6-0d35-4c8e-bd77-c61e23fbdc34",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/dish/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dish",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bb7fd575-288a-4805-aefc-972a42db3cdf",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3087dd1-f265-4a8e-b02c-99a442bc6cbc",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -348,5 +671,34 @@
 			}
 		]
 	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ebfde18a-344b-438b-85ec-539bfa5bb5fa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0377336b-2be2-4f1a-a675-e382b38bc1ef",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "fef8af64-d6aa-4932-8f00-d9250f52f2d2",
+			"key": "host",
+			"value": "https://menu-api101.herokuapp.com"
+		}
+	],
 	"protocolProfileBehavior": {}
 }
