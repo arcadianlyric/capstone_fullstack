@@ -90,15 +90,16 @@ A menu.postman_collection.json file is available for Postman tests.
 ### API behavior and RBAC controls with Auth0
 The menu app is a restuarant menu hosted on Heroku https://menu-api101.herokuapp.com with:  
 
-3 roles: public, manager and chef  
-public permission= read dish info
+#### roles
+3 roles with permission defined in app.py: public, manager and chef  
+public permission= read dish info  
 get /dish  
-get /dish/dish_id
-manager permission= public permission + delete dish
+get /dish/dish_id  
+manager permission= public permission + delete dish  
 delete /dish/dish_id  
-chef permission= manager permission + create new dishes and update them
-post /dish
-patch /dish/dish_id
+chef permission= manager permission + create new dishes and update them  
+post /dish  
+patch /dish/dish_id  
 
 Auth0 is used for authentication. The following configurations are in a setup.sh file to be used in auth.py:
 - AUTH0_DOMAIN
@@ -106,9 +107,11 @@ Auth0 is used for authentication. The following configurations are in a setup.sh
 - ALGORITHMS
 - TOKEN for public, manger and chef roles
 
+#### tables
 2 tables as defined in models.py: dish and ingredient    
-dish with id, name, price, indredients;  
-indredient with id, name, allergen, associated dish id.  
+dish table has info on dish id, dish name, price, indredients; the table keeps track all dishes a resturant can offer by adding, deleting and updating items       
+indredient table has ingredient id, name, allergen in the ingredients, associated dish id(foreign key); the table keeps track all ingredients used in dishes logging what ingredients are used in what dish   
+Each table has an insert, update, delete, and format helper functions.  
 
 ### Endpoints
 ```
