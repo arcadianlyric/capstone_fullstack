@@ -1,10 +1,29 @@
 import os
-from flask import Flask, request, abort, jsonify
+from flask import (
+    Flask,
+    request,
+    abort,
+    jsonify
+)
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import json
 from models import setup_db, Dish, Ingredient
 from auth import AuthError, requires_auth
+
+MODELS_PER_PAGE = 5
+
+
+def paginate_model(request, selection):
+    if request:
+        page = request.args.get('page', 1, type=int)
+    else:
+        page = 1
+    start = (page-1)*MODELS_PER_PAGE
+    end = start + MODELS_PER_PAGE
+    models = [m.format() for m in selection]
+    current_models = models[start:end]
+    return current_models
 
 
 def create_app(test_cfg=None, test_url=False):
@@ -20,7 +39,7 @@ def create_app(test_cfg=None, test_url=False):
     CORS(app)
     '''
     Get ingredient by dish
-    Get dish by ingredient
+    Get dish by allergen
     '''
 
     @app.route('/', methods=['POST', 'GET'])
@@ -30,10 +49,11 @@ def create_app(test_cfg=None, test_url=False):
 
     @app.route('/dish', methods=['GET'])
     def get_dish_all():
+        current_dish = paginate_model(request, Dish.query.all())
         result = {
-        "success": True,
-        "result": [dish.format() for dish in Dish.query.all()]
-    }
+                "success": True,
+                "result": current_dish
+        }
         return jsonify(result)
 
     @app.route('/dish/<int:dish_id>', methods=['GET'])
@@ -42,9 +62,9 @@ def create_app(test_cfg=None, test_url=False):
         if not dish:
             abort(404)
         result = {
-        "success": True,
-        "result": dish.format()
-    }
+                "success": True,
+                "result": dish.format()
+        }
         return jsonify(result)
 
     @app.route("/dish", methods=["POST"])
@@ -59,7 +79,7 @@ def create_app(test_cfg=None, test_url=False):
             if 'name' in res and 'ingredient' in res:
                 ing = res.pop('ingredient')
                 dish = Dish(**res)
-            
+
                 if ing:
                     for i in ing:
                         ingredient = Ingredient(**i, dish_id=dish.id)
@@ -72,6 +92,7 @@ def create_app(test_cfg=None, test_url=False):
                 }
                 return jsonify(result)
         except TypeError:
+            print(sys.exc_info())
             abort(400)
 
     @app.route("/dish/<int:dish_id>", methods=["PATCH"])
@@ -112,15 +133,15 @@ def create_app(test_cfg=None, test_url=False):
         return jsonify({
             "success": True,
             "result": dish_id
-            })    
+            })
 
     # ingredient
     @app.route('/ingredient', methods=['GET'])
     def get_ingredient_all():
         result = {
-        "success": True,
-        "result": [ingredient.format() for ingredient in Ingredient.query.all()]
-    }
+                "success": True,
+                "result": [ingredient.format() for ingredient in Ingredient.query.all()]
+        }
         return jsonify(result)
 
     @app.route('/ingredient/<int:ingredient_id>', methods=['GET'])
@@ -188,9 +209,9 @@ def create_app(test_cfg=None, test_url=False):
             items = [s.format() for s in selection.all()]
             if len(items) == 0:
                 return jsonify({
-                'success': True,
-                'result': 'none',
-            })
+                                'success': True,
+                                'result': 'none',
+                })
 
             dish_info = []
             for i in items:
@@ -256,6 +277,7 @@ def create_app(test_cfg=None, test_url=False):
                 )
 
     return app
+
 
 app = create_app()
 
