@@ -1,4 +1,4 @@
-## Udacity Full Stack Nanodegree Capstone project: menu API backend
+## Udacity Full Stack Nanodegree Capstone project: menu API 
 
 ### Motivation
 This menu app is developed to demonstrate the knowledge acquired in a fullstack web developer nanodegree and show the confidence of skills needed for such roles in a real world scenario. 
